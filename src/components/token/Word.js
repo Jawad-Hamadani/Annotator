@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { TokenContext } from '../../contexts/TokenContext';
 
 const Word = ({
   content,
@@ -9,8 +10,8 @@ const Word = ({
   splitWords,
 }) => {
   const letters = content.split('');
-  const [word, setWord] = useState(words[index]);
-  
+  const word = words[index];
+  const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
   return (
     <>
       <div className={isActiveIndex ? 'words-input-active' : 'morphology-div'}>
@@ -31,6 +32,7 @@ const Word = ({
           onClick={(e) => {
             splitWords(content, e, index);
           }}
+           disabled={showToken && true}
         />
         {words[0] !== content && (
           <i

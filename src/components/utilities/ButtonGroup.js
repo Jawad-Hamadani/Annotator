@@ -7,6 +7,7 @@ const ButtonGroup = () => {
     sentence: [sentence, setSentence],
   } = useContext(SentencesContext);
   const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
+  
   return (
     <div className='flex-row'>
       <Button

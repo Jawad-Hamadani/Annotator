@@ -3,10 +3,14 @@ import { Paper, Button } from '@material-ui/core';
 import Words from './token/Words';
 import Token from './token/Token';
 import { TokenContext } from '../contexts/TokenContext';
+import { SentencesContext } from '../contexts/SentencesContext';
 
 
 const SegmentedDiv = () => {
   const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
+  const {
+    sentence: [sentence, setSentence],
+  } = useContext(SentencesContext);
     return (
       <>
       <div
@@ -22,7 +26,7 @@ const SegmentedDiv = () => {
             <Words />
           </div>
         </Paper>
-        <Button onClick={()=>toggleShowToken(true)} style={{marginTop:'0.5em'}} color='primary' variant="contained">Go to Morphology</Button>
+        <Button onClick={sentence!=='' && (()=>toggleShowToken(!showToken))} style={{marginTop:'0.5em'}} color='primary' variant="contained">{ showToken ? "Back to Coda" : "Go to Morphology"}</Button>
       </div>
      {showToken && <Token />}
       </>

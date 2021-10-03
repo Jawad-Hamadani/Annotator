@@ -8,9 +8,10 @@ const useStyles = makeStyles({
     borderRadius: '0',
   },
 });
+const temp ="مراحب";
 const Token = () => {
   const classes = useStyles();
-  const word=['مرحبا'];
+  const word=[`${temp}`];
   return (
     <div>
       <Paper className={classes.root} variant='outlined' id='work-space'>
