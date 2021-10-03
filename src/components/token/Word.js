@@ -1,8 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
-const Word = ({ content, words, index, joinWords, isActiveIndex, splitWords}) => {
+const Word = ({
+  content,
+  words,
+  index,
+  joinWords,
+  isActiveIndex,
+  splitWords,
+}) => {
   const letters = content.split('');
   const [word, setWord] = useState(words[index]);
+  
   return (
     <>
       <div className={isActiveIndex ? 'words-input-active' : 'morphology-div'}>
@@ -17,12 +25,12 @@ const Word = ({ content, words, index, joinWords, isActiveIndex, splitWords}) =>
         <input
           value={content}
           style={{
-            maxWidth: `${content.length}ch`,
+            maxWidth: `${content.length+1}ch`,
           }}
           className='words-input'
-         onClick={(e) => {
-              splitWords(content, e, index);
-            }}
+          onClick={(e) => {
+            splitWords(content, e, index);
+          }}
         />
         {words[0] !== content && (
           <i

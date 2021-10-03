@@ -78,17 +78,17 @@ p {
 #work-space {
   background-color: #eee;
   display: block;
-  min-width: 49em;
+  min-width: 45em;
   min-height: 8em;
   margin: 1em;
   padding: 0.5em;
 }
-.flex-morphology{
+.flex-morphology {
   display: flex;
   min-width: 100%;
   grid-gap: 0.3em;
   justify-items: center;
-  flex-direction:row-reverse;
+  flex-direction: row-reverse;
 }
 .grid-4 {
   display: grid;

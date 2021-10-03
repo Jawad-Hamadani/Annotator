@@ -1,4 +1,4 @@
-import SelectGroup from '../SelectGroup';
+import SelectGroup from '../utilities/SelectGroup';
 import { TextField } from '@material-ui/core';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';

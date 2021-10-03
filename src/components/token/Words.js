@@ -7,20 +7,25 @@ const Words = () => {
     sentence: [sentence, setSentence],
   } = useContext(SentencesContext);
   const [change, setChange] = useState(false);
-  const [words, setWords] = useState(sentence.split(' ').filter((e) => e));
+  const {words : [words, setWords]} = useContext(SentencesContext);
   const [history, setHistory] = useState([]);
   const [arrayIndex, setArrayIndex] = useState(0);
   const [activeIndexes, setActiveIndexes] = useState(null);
 
   useEffect(() => {
     setWords(sentence.split(' ').filter((e) => e));
-     setSentence((sentence.split(' ').filter((e) => e)).join(' '))
+    setSentence(
+      sentence
+        .split(' ')
+        .filter((e) => e)
+        .join(' ')
+    );
     setHistory([sentence.split(' ').filter((e) => e)]);
   }, [sentence]);
 
   function joinWords(i, j) {
     // let newArr = words;
-     let newArr = [...words];
+    let newArr = [...words];
     let firstWord = newArr[i];
     let secondWord = newArr[j];
     if (i > j) {
@@ -42,21 +47,21 @@ const Words = () => {
   }
 
   function splitWords(item, e, wordIndex) {
-    const index = ("Caret at: ", e.target.selectionStart);
-    const word = item.split("");
-    const firstWord = word.splice(0, index).join("");
-    const secondWord = word.join("");
+    const index = ('Caret at: ', e.target.selectionStart);
+    if(index == 0 || index == item.length){return}
+    const word = item.split('');
+    const firstWord = word.splice(0, index).join('');
+    const secondWord = word.join('');
     let newArr = [...words];
-    newArr.splice(wordIndex,1)
-    console.log(firstWord && secondWord)
-    if (firstWord && secondWord) { // must validate that what im cutting isnt the beggining or the end of the word
+    newArr.splice(wordIndex, 1);
+    if (firstWord && secondWord !== '') {
+      // must validate that what im cutting isnt the beggining or the end of the word
       newArr.splice(wordIndex, 0, secondWord);
       newArr.splice(wordIndex, 0, firstWord);
     }
     setWords(newArr);
-     setSentence(newArr.join(' '));
+    setSentence(newArr.join(' '));
   }
-
 
   return (
     <>
