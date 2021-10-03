@@ -7,8 +7,11 @@ import {
 } from '@material-ui/core';
 import { useState, useContext } from 'react';
 import { SentencesContext } from '../contexts/SentencesContext';
+import { TokenContext } from '../contexts/TokenContext';
 
 const Sentences = ({}) => {
+  const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
+  const { word : [word, setWord] } = useContext(TokenContext);
   const {
     sentence: [sentence, setSentence],
     edit: [edit, setEdit],
@@ -35,6 +38,8 @@ const Sentences = ({}) => {
                 onClick={() => {
                   setSentence(item);
                   setEdit(false);
+                  setWord(['']);
+                  toggleShowToken(false);
                 }}
               >
                 <ListItemText primary={item} />

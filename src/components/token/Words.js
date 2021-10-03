@@ -54,8 +54,7 @@ const Words = () => {
     const secondWord = word.join('');
     let newArr = [...words];
     newArr.splice(wordIndex, 1);
-    if (firstWord && secondWord !== '') {
-      // must validate that what im cutting isnt the beggining or the end of the word
+    if (firstWord && secondWord) {
       newArr.splice(wordIndex, 0, secondWord);
       newArr.splice(wordIndex, 0, firstWord);
     }

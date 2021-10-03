@@ -14,15 +14,29 @@ const useStyles = makeStyles({
 const Token = () => {
   const { word : [word, setWord] } = useContext(TokenContext);
   const classes = useStyles();
-  var wordToken=[`${word}`];
-  
+ 
+  function splitWords(item, e, wordIndex) {
+    const index = ('Caret at: ', e.target.selectionStart);
+    if(index == 0 || index == item.length){return}
+    const temp = item.split('');
+    const firstWord = temp.splice(0, index).join('');
+    const secondWord = temp.join('');
+    let newArr = [...word];
+    newArr.splice(wordIndex, 1);
+    if (firstWord && secondWord) {
+      newArr.splice(wordIndex, 0, secondWord);
+      newArr.splice(wordIndex, 0, firstWord);
+    }
+    setWord(newArr);
+  }
+
   return (
     <div>
       <Paper className={classes.root} variant='outlined' id='work-space'>
         {' '}
         <div className='flex-morphology'>
-        {wordToken.map((item, i)=>(
-         <Morphology value={item} key={i} />
+        {word.map((item, i)=>(
+         <Morphology value={item} key={i} index={i} splitWords={splitWords} />
         ))}
         </div>
         <InputSelectValidated />

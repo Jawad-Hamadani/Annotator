@@ -9,8 +9,9 @@ const useStyles = makeStyles({
   }
 });
 
-const Morphology = ({ value }) => {
+const Morphology = ({ value, index, splitWords}) => {
   const borderRaduis = { borderRadius: '0' };
+
   const classes = useStyles();
   return (
     <div style={{ width: '100%' }}>
@@ -26,6 +27,9 @@ const Morphology = ({ value }) => {
         variant='outlined'
         fullWidth
         value={value}
+        onClick={(e) => {      
+         splitWords(value, e, index) 
+        }}
       />
       <SelectGroup
         styleT={borderRaduis}

@@ -12,10 +12,12 @@ const Word = ({
   const letters = content.split('');
   const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
   const { word : [word, setWord] } = useContext(TokenContext);
+  const {wordDisplay : [wordDisplay, setWordDisplay] }=useContext(TokenContext);
+
   return (
     <>
       <div className={isActiveIndex ? 'words-input-active' : 'morphology-div'}>
-        {words[words.length - 1] !== content && (
+        {words[words.length - 1] !== content && !showToken &&(
           <i
             onClick={() => {
               joinWords(index, index + 1);
@@ -29,13 +31,16 @@ const Word = ({
             maxWidth: `${content.length+1}ch`,
           }}
           className='words-input'
-          onClick={(e) => {
-            splitWords(content, e, index);
-            {showToken && setWord(content)}
+          onClick={(e) => {      
+            if(showToken){
+              setWord([content]);
+              setWordDisplay(content); 
+            }else{
+              splitWords(content, e, index)
+            }   
           }}
-           disabled={showToken && true}
         />
-        {words[0] !== content && (
+        {words[0] !== content && !showToken &&(
           <i
             onClick={() => joinWords(index, index - 1)}
             className='fas fa-arrow-right arrow'
