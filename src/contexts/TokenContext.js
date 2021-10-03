@@ -6,11 +6,12 @@ export const TokenContext = createContext();
 export const TokenProvider = (props) => {
     const [showToken, toggleShowToken]= useState(false);
     const {words : [words, setWords]} = useContext(SentencesContext);
-    // const word = words[index];
+    const [word, setWord] = useState('');
   return (
     <TokenContext.Provider
       value={{
-        showToken : [showToken, toggleShowToken]
+        showToken : [showToken, toggleShowToken],
+        word : [word, setWord] 
       }}
     >
       {props.children}

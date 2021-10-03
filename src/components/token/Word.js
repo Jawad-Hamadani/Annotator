@@ -10,8 +10,8 @@ const Word = ({
   splitWords,
 }) => {
   const letters = content.split('');
-  const word = words[index];
   const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
+  const { word : [word, setWord] } = useContext(TokenContext);
   return (
     <>
       <div className={isActiveIndex ? 'words-input-active' : 'morphology-div'}>
@@ -31,6 +31,7 @@ const Word = ({
           className='words-input'
           onClick={(e) => {
             splitWords(content, e, index);
+            {showToken && setWord(content)}
           }}
            disabled={showToken && true}
         />
