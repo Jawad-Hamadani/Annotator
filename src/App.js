@@ -1,17 +1,13 @@
 import Navbar from './components/layout/Navbar';
 import SearchBar from './components/utilities/SearchBar';
-import SelectGroup from './components/utilities/SelectGroup';
 import { Button } from '@material-ui/core';
-import { useContext } from 'react';
 import ButtonGroup from './components/utilities/ButtonGroup';
-import Sentences from './components/Sentences';
-import Token from './components/token/Token';
-import MainInput from './components/MainInput';
-import SegmentedDiv from './components/SegmentedDiv';
+import Sentences from './components/utilities/Sentences';
 import { SentencesProvider } from './contexts/SentencesContext';
 import SelectGroupCollection1 from './components/utilities/SelectGroupCollection1';
 import SelectGroupSelection2 from './components/utilities/SelectGroupSelection2';
 import { TokenProvider } from './contexts/TokenContext';
+import Segmentation from './components/layout/Segmentation';
 function App() {
   return (
     <SentencesProvider>
@@ -26,8 +22,7 @@ function App() {
             <SelectGroupCollection1 />
           </div>
           <div className='main-work-space'>
-             <MainInput />      
-             <SegmentedDiv />         
+            <Segmentation />       
             <div className='search'></div>
             <ButtonGroup />
           </div>

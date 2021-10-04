@@ -2,14 +2,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import { SentencesContext } from '../../contexts/SentencesContext';
 import Word from './Word';
 
-const Words = () => {
+const Words = ({history, setHistory, arrayIndex, setArrayIndex}) => {
   const {
     sentence: [sentence, setSentence],
   } = useContext(SentencesContext);
   const [change, setChange] = useState(false);
   const {words : [words, setWords]} = useContext(SentencesContext);
-  const [history, setHistory] = useState([]);
-  const [arrayIndex, setArrayIndex] = useState(0);
   const [activeIndexes, setActiveIndexes] = useState(null);
 
   useEffect(() => {
@@ -20,11 +18,10 @@ const Words = () => {
         .filter((e) => e)
         .join(' ')
     );
-    setHistory([sentence.split(' ').filter((e) => e)]);
   }, [sentence]);
+    useEffect(()=>{setHistory([sentence.split(' ').filter((e) => e)])},[])
 
   function joinWords(i, j) {
-    // let newArr = words;
     let newArr = [...words];
     let firstWord = newArr[i];
     let secondWord = newArr[j];
@@ -58,8 +55,12 @@ const Words = () => {
       newArr.splice(wordIndex, 0, secondWord);
       newArr.splice(wordIndex, 0, firstWord);
     }
+    let temp = history;
     setWords(newArr);
     setSentence(newArr.join(' '));
+    temp.push(newArr);
+    setHistory(temp);
+    setArrayIndex(arrayIndex + 1);
   }
 
   return (

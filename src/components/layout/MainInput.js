@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core';
 import { useContext } from 'react';
-import { SentencesContext } from '../contexts/SentencesContext';
+import { SentencesContext } from '../../contexts/SentencesContext';
 
 
 const MainInput = ({}) => {
@@ -17,7 +17,7 @@ const MainInput = ({}) => {
     <>
       <div className='icon-flex'>
         <div style={{ width: '10%', paddingTop: '2em' }}>
-          <i onClick={() => setEdit(!edit)} className='fas fa-edit fa-2x'></i>
+          <i title="Edit Text" onClick={() => setEdit(!edit)} className='fas fa-edit fa-2x'></i>
         </div>
         <div style={{ width: '100%' }}>
           <TextField

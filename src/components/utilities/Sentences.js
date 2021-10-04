@@ -6,8 +6,8 @@ import {
   Divider,
 } from '@material-ui/core';
 import { useState, useContext } from 'react';
-import { SentencesContext } from '../contexts/SentencesContext';
-import { TokenContext } from '../contexts/TokenContext';
+import { SentencesContext } from '../../contexts/SentencesContext';
+import { TokenContext } from '../../contexts/TokenContext';
 
 const Sentences = ({}) => {
   const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);

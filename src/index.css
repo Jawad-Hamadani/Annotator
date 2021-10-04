@@ -29,7 +29,7 @@ code {
 
 .sidebars {
   background-color: var(--secondary-bg-color);
-  padding-bottom: 18em;
+  padding-bottom: 5em;
   padding-left: 1em;
   padding-right: 1em;
 }
@@ -167,4 +167,21 @@ p {
   padding: 0.2em;
   border-radius: 0.2em;
   border: solid lightgreen;
+}
+.undo-redo{
+  display: flex;
+  flex-direction: row;
+  grid-gap: 0.5em;
+  justify-content: flex-end;
+  color: var(--main-bg-color);
+  margin-bottom: 0.3em;
+  margin-right: 0.3em;
+}
+.fa-undo:hover {
+  cursor: pointer;
+  color: #374699;
+}
+.fa-redo:hover {
+  cursor: pointer;
+  color: #374699;
 }
