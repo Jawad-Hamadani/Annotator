@@ -1,30 +1,28 @@
 import React, { useContext, useState, useEffect } from "react";
+import { DataContext } from "../../contexts/DataContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
-import { SentencesContext } from "../../contexts/SentencesContext";
 import Word from "./Word";
 
 const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
   const {
-    sentence: [sentence, setSentence],
-  } = useContext(SentencesContext);
+    fixed: [fixed, setFixed],
+    raw: [raw, setRaw],
+  } = useContext(DataContext);
   const [change, setChange] = useState(false);
-  const {
-    words: [words, setWords],
-  } = useContext(SentencesContext);
   const {
     hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
   } = useContext(HistoryContext);
 
   useEffect(() => {
-    setWords(sentence.split(" ").filter((e) => e));
-  }, [sentence]);
+    setRaw(fixed.split(" ").filter((e) => e));
+  }, [fixed]);
 
   useEffect(() => {
-    setHistory([sentence.split(" ").filter((e) => e)]);
+    setHistory([fixed.split(" ").filter((e) => e)]);
   }, [hasBeenClicked]);
 
   function joinWords(i, j) {
-    let newArr = [...words];
+    let newArr = [...raw];
     let firstWord = newArr[i];
     let secondWord = newArr[j];
     if (i > j) {
@@ -36,7 +34,7 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
     }
 
     let temp = history;
-    setWords(newArr);
+    setRaw(newArr);
     temp.push(newArr);
     setHistory(temp);
     setArrayIndex(arrayIndex + 1);
@@ -45,10 +43,10 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
 
   return (
     <>
-      {words.map((word, i) => (
+      {raw.map((word, i) => (
         <Word
           content={word}
-          words={words}
+          raw={raw}
           key={i}
           index={i}
           joinWords={joinWords}

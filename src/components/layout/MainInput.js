@@ -1,15 +1,19 @@
 import { TextField } from "@material-ui/core";
 import { useContext } from "react";
 import { SentencesContext } from "../../contexts/SentencesContext";
+import { DataContext } from "../../contexts/DataContext";
 
 const MainInput = ({}) => {
   const {
-    sentence: [sentence, setSentence],
+    fixed: [fixed, setFixed],
+  } = useContext(DataContext);
+
+  const {
     edit: [edit, setEdit],
   } = useContext(SentencesContext);
 
   function editInput(e) {
-    setSentence(e.target.value);
+    setFixed(e.target.value);
   }
 
   return (
@@ -32,7 +36,7 @@ const MainInput = ({}) => {
             disabled={edit ? false : true}
             variant="outlined"
             onChange={(e) => edit && editInput(e)}
-            value={sentence}
+            value={fixed}
             inputProps={{ style: { fontSize: "1.3em" } }}
           />
         </div>

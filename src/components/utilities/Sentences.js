@@ -9,6 +9,7 @@ import { useState, useContext } from "react";
 import { SentencesContext } from "../../contexts/SentencesContext";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
+import { DataContext } from "../../contexts/DataContext";
 
 const Sentences = ({}) => {
   const {
@@ -18,7 +19,9 @@ const Sentences = ({}) => {
     word: [word, setWord],
   } = useContext(TokenContext);
   const {
-    sentence: [sentence, setSentence],
+    fixed: [fixed, setFixed],
+  } = useContext(DataContext);
+  const {
     edit: [edit, setEdit],
   } = useContext(SentencesContext);
   const {
@@ -52,7 +55,7 @@ const Sentences = ({}) => {
               <ListItem
                 className="sentences"
                 onClick={() => {
-                  setSentence(item);
+                  setFixed(item);
                   setEdit(false);
                   setWord([""]);
                   toggleShowToken(false);

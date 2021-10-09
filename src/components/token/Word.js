@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
 
-const Word = ({ content, words, index, joinWords }) => {
+const Word = ({ content, raw, index, joinWords }) => {
   const letters = content.split("");
   const {
     showToken: [showToken, toggleShowToken],
@@ -20,7 +20,7 @@ const Word = ({ content, words, index, joinWords }) => {
   return (
     <>
       <div className="morphology-div">
-        {words[words.length - 1] !== content && !showToken && (
+        {raw[raw.length - 1] !== content && !showToken && (
           <i
             onClick={() => {
               joinWords(index, index + 1);
@@ -54,7 +54,7 @@ const Word = ({ content, words, index, joinWords }) => {
         >
           {content}
         </div>
-        {words[0] !== content && !showToken && (
+        {raw[0] !== content && !showToken && (
           <i
             onClick={() => joinWords(index, index - 1)}
             className="fas fa-arrow-right arrow"

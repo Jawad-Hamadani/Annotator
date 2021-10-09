@@ -1,13 +1,13 @@
 import { Button } from "@material-ui/core";
-import { SentencesContext } from "../../contexts/SentencesContext";
 import { TokenContext } from "../../contexts/TokenContext";
 import { useContext } from "react";
 import { HistoryContext } from "../../contexts/HistoryContext";
+import { DataContext } from "../../contexts/DataContext";
 
 const ButtonGroup = () => {
   const {
-    sentence: [sentence, setSentence],
-  } = useContext(SentencesContext);
+    fixed: [fixed, setFixed],
+  } = useContext(DataContext);
   const {
     showToken: [showToken, toggleShowToken],
   } = useContext(TokenContext);
@@ -31,7 +31,7 @@ const ButtonGroup = () => {
         variant="contained"
         color="primary"
         onClick={() => {
-          setSentence("");
+          setFixed("");
           toggleShowToken(false);
           setMorphHistory([]);
           setWord("");

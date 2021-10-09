@@ -44,6 +44,9 @@ const Token = () => {
       newArr.splice(wordIndex, 0, secondWord);
       newArr.splice(wordIndex, 0, firstWord);
     }
+    if (firstWord == " " || secondWord == " ") {
+      return;
+    }
     let temp = morphHistory;
     setWord(newArr);
     temp.push(newArr);
@@ -52,6 +55,7 @@ const Token = () => {
     console.log(morphHistory);
     setMorphArrayIndex(morphArrayIndex + 1);
   }
+
   const morphUndo = () => {
     if (morphArrayIndex !== 0) {
       setWord(morphHistory[morphArrayIndex - 1]);

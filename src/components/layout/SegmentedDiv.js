@@ -3,19 +3,17 @@ import { Paper, Button } from "@material-ui/core";
 import Words from "../token/Words";
 import Token from "../token/Token";
 import { TokenContext } from "../../contexts/TokenContext";
-import { SentencesContext } from "../../contexts/SentencesContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
+import { DataContext } from "../../contexts/DataContext";
 
 const SegmentedDiv = () => {
   const {
     showToken: [showToken, toggleShowToken],
   } = useContext(TokenContext);
   const {
-    sentence: [sentence, setSentence],
-  } = useContext(SentencesContext);
-  const {
-    words: [words, setWords],
-  } = useContext(SentencesContext);
+    fixed: [fixed, setFixed],
+    raw: [raw, setRaw],
+  } = useContext(DataContext);
   const {
     history: [history, setHistory],
   } = useContext(HistoryContext);
@@ -25,8 +23,8 @@ const SegmentedDiv = () => {
 
   const undo = () => {
     if (arrayIndex !== 0) {
-      setWords(history[arrayIndex - 1]);
-      setSentence(history[arrayIndex - 1].join(" "));
+      setRaw(history[arrayIndex - 1]);
+      setFixed(history[arrayIndex - 1].join(" "));
       setArrayIndex(arrayIndex - 1);
       history.pop();
       setHistory(history);
@@ -64,7 +62,7 @@ const SegmentedDiv = () => {
           </div>
         </Paper>
         <Button
-          onClick={sentence !== "" && (() => toggleShowToken(!showToken))}
+          onClick={fixed !== "" && (() => toggleShowToken(!showToken))}
           style={{ marginTop: "0.5em" }}
           color="primary"
           variant="contained"

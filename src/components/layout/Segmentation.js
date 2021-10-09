@@ -1,16 +1,18 @@
 import { useContext } from "react";
-import MainInput from './MainInput'
+import MainInput from "./MainInput";
 import SegmentedDiv from "./SegmentedDiv";
-import { SentencesContext } from "../../contexts/SentencesContext";
+import { DataContext } from "../../contexts/DataContext";
 
-const Segmentation = () =>{
-    const {  sentence: [sentence, setSentence] } = useContext(SentencesContext);
-return(
+const Segmentation = () => {
+  const {
+    fixed: [fixed, setFixed],
+  } = useContext(DataContext);
+  return (
     <>
-        <MainInput />    
-        {sentence !== '' && <SegmentedDiv /> }   
+      <MainInput />
+      {fixed !== "" && <SegmentedDiv />}
     </>
-)}
+  );
+};
 
 export default Segmentation;
-

@@ -1,13 +1,9 @@
-import React, { createContext, useState, useContext } from "react";
-import { SentencesContext } from "./SentencesContext";
+import React, { createContext, useState } from "react";
 
 export const TokenContext = createContext();
 
 export const TokenProvider = (props) => {
   const [showToken, toggleShowToken] = useState(false);
-  const {
-    words: [words, setWords],
-  } = useContext(SentencesContext);
   const [word, setWord] = useState([""]);
   const [codaElement, setCodaElement] = useState("");
   return (
