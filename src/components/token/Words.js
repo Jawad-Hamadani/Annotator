@@ -1,25 +1,27 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { SentencesContext } from '../../contexts/SentencesContext';
-import Word from './Word';
+import React, { useContext, useState, useEffect } from "react";
+import { HistoryContext } from "../../contexts/HistoryContext";
+import { SentencesContext } from "../../contexts/SentencesContext";
+import Word from "./Word";
 
-const Words = ({history, setHistory, arrayIndex, setArrayIndex}) => {
+const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
   const {
     sentence: [sentence, setSentence],
   } = useContext(SentencesContext);
   const [change, setChange] = useState(false);
-  const {words : [words, setWords]} = useContext(SentencesContext);
-  const [activeIndexes, setActiveIndexes] = useState(null);
+  const {
+    words: [words, setWords],
+  } = useContext(SentencesContext);
+  const {
+    hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
+  } = useContext(HistoryContext);
 
   useEffect(() => {
-    setWords(sentence.split(' ').filter((e) => e));
-    setSentence(
-      sentence
-        .split(' ')
-        .filter((e) => e)
-        .join(' ')
-    );
+    setWords(sentence.split(" ").filter((e) => e));
   }, [sentence]);
-    useEffect(()=>{setHistory([sentence.split(' ').filter((e) => e)])},[])
+
+  useEffect(() => {
+    setHistory([sentence.split(" ").filter((e) => e)]);
+  }, [hasBeenClicked]);
 
   function joinWords(i, j) {
     let newArr = [...words];
@@ -27,40 +29,18 @@ const Words = ({history, setHistory, arrayIndex, setArrayIndex}) => {
     let secondWord = newArr[j];
     if (i > j) {
       newArr.splice(j, 1);
-      newArr[j] = secondWord + firstWord;
-      setActiveIndexes(j);
+      newArr[j] = secondWord + " " + firstWord;
     } else {
       newArr.splice(i, 1);
-      newArr[i] = firstWord + secondWord;
-      setActiveIndexes(i);
+      newArr[i] = firstWord + " " + secondWord;
     }
+
     let temp = history;
     setWords(newArr);
-    setSentence(newArr.join(' '));
     temp.push(newArr);
     setHistory(temp);
     setArrayIndex(arrayIndex + 1);
     setChange(!change);
-  }
-
-  function splitWords(item, e, wordIndex) {
-    const index = ('Caret at: ', e.target.selectionStart);
-    if(index == 0 || index == item.length){return}
-    const word = item.split('');
-    const firstWord = word.splice(0, index).join('');
-    const secondWord = word.join('');
-    let newArr = [...words];
-    newArr.splice(wordIndex, 1);
-    if (firstWord && secondWord) {
-      newArr.splice(wordIndex, 0, secondWord);
-      newArr.splice(wordIndex, 0, firstWord);
-    }
-    let temp = history;
-    setWords(newArr);
-    setSentence(newArr.join(' '));
-    temp.push(newArr);
-    setHistory(temp);
-    setArrayIndex(arrayIndex + 1);
   }
 
   return (
@@ -72,8 +52,6 @@ const Words = ({history, setHistory, arrayIndex, setArrayIndex}) => {
           key={i}
           index={i}
           joinWords={joinWords}
-          splitWords={splitWords}
-          isActiveIndex={i === activeIndexes}
         />
       ))}
     </>

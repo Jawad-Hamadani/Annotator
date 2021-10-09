@@ -1,49 +1,63 @@
-import React, { useContext } from 'react';
-import { TokenContext } from '../../contexts/TokenContext';
+import React, { useContext, useEffect } from "react";
+import { TokenContext } from "../../contexts/TokenContext";
+import { HistoryContext } from "../../contexts/HistoryContext";
 
-const Word = ({
-  content,
-  words,
-  index,
-  joinWords,
-  isActiveIndex,
-  splitWords,
-}) => {
-  const letters = content.split('');
-  const {  showToken : [showToken, toggleShowToken]} = useContext(TokenContext);
-  const { word : [word, setWord] } = useContext(TokenContext);
-  const {wordDisplay : [wordDisplay, setWordDisplay] }=useContext(TokenContext);
+const Word = ({ content, words, index, joinWords }) => {
+  const letters = content.split("");
+  const {
+    showToken: [showToken, toggleShowToken],
+  } = useContext(TokenContext);
+  const {
+    word: [word, setWord],
+  } = useContext(TokenContext);
+  const {
+    codaElement: [codaElement, setCodaElement],
+  } = useContext(TokenContext);
+  const {
+    morphHasBeenClicked: [morphHasBeenClicked, toggleMorphHasBeenClicked],
+  } = useContext(HistoryContext);
 
   return (
     <>
-      <div className={isActiveIndex ? 'words-input-active' : 'morphology-div'}>
-        {words[words.length - 1] !== content && !showToken &&(
+      <div className="morphology-div">
+        {words[words.length - 1] !== content && !showToken && (
           <i
             onClick={() => {
               joinWords(index, index + 1);
             }}
-            className='fas fa-arrow-left arrow'
+            className="fas fa-arrow-left arrow"
           ></i>
         )}
-        <input
+        {/* <input
           value={content}
           style={{
-            maxWidth: `${content.length+1}ch`,
+            maxWidth: `${content.length + 1}ch`,
           }}
-          className='words-input'
-          onClick={(e) => {      
-            if(showToken){
+          className="words-input"
+          onClick={(e) => {
+            if (showToken) {
               setWord([content]);
-              setWordDisplay(content); 
-            }else{
-              splitWords(content, e, index)
-            }   
+              setCodaElement(content);
+              toggleMorphHasBeenClicked(!morphHasBeenClicked);
+            }
           }}
-        />
-        {words[0] !== content && !showToken &&(
+        /> */}
+        <div
+          className="words-input"
+          onClick={(e) => {
+            if (showToken) {
+              setWord([content]);
+              setCodaElement(content);
+              toggleMorphHasBeenClicked(!morphHasBeenClicked);
+            }
+          }}
+        >
+          {content}
+        </div>
+        {words[0] !== content && !showToken && (
           <i
             onClick={() => joinWords(index, index - 1)}
-            className='fas fa-arrow-right arrow'
+            className="fas fa-arrow-right arrow"
           ></i>
         )}
       </div>
