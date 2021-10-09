@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
 
-const Word = ({ content, raw, index, joinWords }) => {
+const Word = ({ content, raw, index, joinWords, isMerged }) => {
   const letters = content.split("");
   const {
     showToken: [showToken, toggleShowToken],
@@ -19,7 +19,7 @@ const Word = ({ content, raw, index, joinWords }) => {
 
   return (
     <>
-      <div className="morphology-div">
+      <div className={isMerged ? "words-input-active" : "morphology-div"}>
         {raw[raw.length - 1] !== content && !showToken && (
           <i
             onClick={() => {

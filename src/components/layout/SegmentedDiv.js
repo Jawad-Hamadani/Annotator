@@ -24,7 +24,6 @@ const SegmentedDiv = () => {
   const undo = () => {
     if (arrayIndex !== 0) {
       setRaw(history[arrayIndex - 1]);
-      setFixed(history[arrayIndex - 1].join(" "));
       setArrayIndex(arrayIndex - 1);
       history.pop();
       setHistory(history);

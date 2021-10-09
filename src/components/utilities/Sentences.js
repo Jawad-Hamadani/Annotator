@@ -25,7 +25,10 @@ const Sentences = ({}) => {
     edit: [edit, setEdit],
   } = useContext(SentencesContext);
   const {
-    history: [history, setHistory],
+    mergedIndexes: [mergedIndexes, setMergedIndexes],
+  } = useContext(SentencesContext);
+  const {
+    mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
   } = useContext(HistoryContext);
   const {
     arrayIndex: [arrayIndex, setArrayIndex],
@@ -62,6 +65,8 @@ const Sentences = ({}) => {
                   setArrayIndex(0);
                   toggleHasBeenClicked(!hasBeenClicked);
                   setCodaElement("");
+                  setMergedIndexes([]);
+                  setMergedIndexesHistory([]);
                 }}
               >
                 <ListItemText primary={item} />
