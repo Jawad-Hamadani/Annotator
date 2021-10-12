@@ -7,20 +7,20 @@ import { DataContext } from "../../contexts/DataContext";
 const ButtonGroup = () => {
   const {
     fixed: [fixed, setFixed],
+    original: [original, setOriginal],
+    lemma: [lemma, setLemma],
+    gloss: [gloss, setGloss],
+    taxonomy: [taxonomy, setTaxonomy],
+    cleanUp: cleanUpData,
   } = useContext(DataContext);
   const {
     showToken: [showToken, toggleShowToken],
+    word: [word, setWord],
+    codaElement: [codaElement, setCodaElement],
+    canResetMorph: [canResetMorph, toggleCanResetMorph],
   } = useContext(TokenContext);
   const {
     morphHistory: [morphHistory, setMorphHistory],
-  } = useContext(HistoryContext);
-  const {
-    word: [word, setWord],
-  } = useContext(TokenContext);
-  const {
-    codaElement: [codaElement, setCodaElement],
-  } = useContext(TokenContext);
-  const {
     morphArrayIndex: [morphArrayIndex, setMorphArrayIndex],
   } = useContext(HistoryContext);
   return (
@@ -31,11 +31,12 @@ const ButtonGroup = () => {
         variant="contained"
         color="primary"
         onClick={() => {
-          setFixed("");
           toggleShowToken(false);
           setMorphHistory([]);
           setWord("");
           setCodaElement("");
+          toggleCanResetMorph(false);
+          cleanUpData();
         }}
       >
         Reset All
@@ -50,7 +51,10 @@ const ButtonGroup = () => {
           setWord(morphHistory[0]);
           setMorphHistory([morphHistory[0]]);
           setMorphArrayIndex(0);
+          setGloss("");
+          setTaxonomy([""]);
         }}
+        disabled={!canResetMorph && true}
       >
         Reset Morphology
       </Button>

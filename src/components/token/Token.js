@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { Paper } from "@material-ui/core";
 import Morphology from "./Morphology";
-import InputSelectValidated from "./InputSelectValidatedToken";
+import CodaLemmaGloss from "./CodaLemmaGloss";
 import { makeStyles } from "@material-ui/core/styles";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
 import ButtonGroup from "../utilities/ButtonGroup";
+import Taxonomy from "./Taxonomy";
+import Tags from "./tags.json";
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +30,7 @@ const Token = () => {
   useEffect(() => {
     setMorphHistory(morphHistory);
   }, [morphFlag]);
+
   const classes = useStyles();
 
   function splitWords(item, e, wordIndex) {
@@ -71,23 +74,17 @@ const Token = () => {
         {" "}
         <div className="flex-morphology">
           <i
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#c9c4b3",
-              padding: "0.3em",
-            }}
             title="Undo"
             onClick={() => {
               {
                 morphUndo();
               }
             }}
-            className="fas fa-redo"
+            className="fas fa-undo"
           ></i>
           {word.map((item, i) => (
             <Morphology
+              tags={Tags}
               value={item}
               key={i}
               word={word}
@@ -100,7 +97,8 @@ const Token = () => {
             />
           ))}
         </div>
-        <InputSelectValidated />
+        <CodaLemmaGloss tags={Tags} />
+        <Taxonomy tags={Tags} />
       </Paper>
       <ButtonGroup />
     </div>

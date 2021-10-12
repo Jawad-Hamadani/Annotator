@@ -1,0 +1,26 @@
+{
+  "pos": {
+    "NOUN": {
+      "features": ["number", "state", "gender", "nounForm"],
+      "values": ["1MS", "3FP", "2MD"]
+    },
+    "VERB": {
+      "features": ["number", "gender", "aspect", "mood", "case", "verbForm"],
+      "values": ["1MSTG", "3FPSF", "2MDFA"]
+    },
+    "ADJ": {
+      "features": ["number", "state", "gender"],
+      "values": ["1MS", "3FP", "2MD"],
+      "forms": ["فعل", "فعّل", "مفعل"]
+    },
+
+    "PREP": []
+  },
+
+  "taxonomy": ["NONE", "t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9"],
+  "nounForms": ["فعل", "فعّل", "مفعل"],
+
+  "verbForms": ["فعل", "فعّل", "افتعل"],
+
+  "dialect": ["LEB", "MSA", "EGY"]
+}

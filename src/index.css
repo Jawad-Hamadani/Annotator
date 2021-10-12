@@ -57,6 +57,12 @@ p {
   flex-wrap: nowrap;
   margin-bottom: 10px;
 }
+.flex-taxonomy {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
 .main-work-space {
   display: flex;
   align-items: center;
@@ -92,9 +98,13 @@ p {
 }
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(2, 2fr) 5fr repeat(2, 1fr);
+  grid-template-columns: repeat(2, 2fr) 5fr 2fr;
   margin-top: 10px;
   grid-gap: 0.3em;
+}
+.grid-5 {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
 }
 .TextField-without-border-radius fieldset {
   border-radius: 0;
@@ -116,6 +126,17 @@ p {
   color: var(--main-bg-color);
 }
 .fa-edit:hover {
+  cursor: pointer;
+  color: #374699;
+}
+.fa-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5em;
+  color: var(--main-bg-color);
+}
+.fa-plus:hover {
   cursor: pointer;
   color: #374699;
 }
@@ -181,7 +202,10 @@ p {
   cursor: pointer;
   color: #374699;
 }
-.fa-redo:hover {
+.fa-undo {
+  display: flex;
+  justify-content: center;
   cursor: pointer;
-  color: #374699;
+  align-items: center;
+  color: var(--main-bg-color);
 }

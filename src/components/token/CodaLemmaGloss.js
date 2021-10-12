@@ -1,15 +1,21 @@
 import { useContext } from "react";
 import SelectGroup from "../utilities/SelectGroup";
 import { TextField } from "@material-ui/core";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { TokenContext } from "../../contexts/TokenContext";
+import { DataContext } from "../../contexts/DataContext";
 
-const InputSelectValidated = () => {
+const CodaLemmaGloss = ({ tags }) => {
   const {
     codaElement: [codaElement, setCodaElement],
   } = useContext(TokenContext);
+  const {
+    lemma: [lemma, setLemma],
+    dialect: [dialect, setDialect],
+    gloss: [gloss, setGloss],
+    coda: [coda, setCoda],
+  } = useContext(DataContext);
+
+  const DIALECT = tags.dialect;
   return (
     <div className="grid-4">
       <div>
@@ -20,7 +26,10 @@ const InputSelectValidated = () => {
           id="outlined-basic"
           variant="outlined"
           value={codaElement}
-          onChange={(e) => setCodaElement(e.target.value)}
+          onChange={(e) => {
+            setCodaElement(e.target.value);
+          }}
+          placeholder="Coda"
         />
       </div>
       <div>
@@ -30,6 +39,9 @@ const InputSelectValidated = () => {
           size="small"
           id="outlined-basic"
           variant="outlined"
+          value={lemma}
+          onChange={(e) => setLemma(e.target.value)}
+          placeholder="Lemma"
         />
       </div>
       <div>
@@ -39,26 +51,21 @@ const InputSelectValidated = () => {
           id="outlined-basic"
           variant="outlined"
           fullWidth
+          value={gloss}
+          onChange={(e) => setGloss(e.target.value)}
+          placeholder="Gloss"
         />
       </div>
       <SelectGroup
         styleT={{ borderRadius: "0" }}
         formSize="small"
         variant="outlined"
-        disabled
         formWidth="100%"
-        options={["", ""]}
+        options={DIALECT}
+        onChange={(e) => setDialect(e)}
       />
-      <div>
-        <FormGroup style={{ width: "100%" }}>
-          <FormControlLabel
-            control={<Checkbox size="small" color="primary" />}
-            label={<span style={{ fontSize: ".8em" }}>Validated</span>}
-          />
-        </FormGroup>
-      </div>
     </div>
   );
 };
 
-export default InputSelectValidated;
+export default CodaLemmaGloss;

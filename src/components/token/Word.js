@@ -1,21 +1,30 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
+import { DataContext } from "../../contexts/DataContext";
 
-const Word = ({ content, raw, index, joinWords, isMerged }) => {
+const Word = ({
+  content,
+  raw,
+  index,
+  joinWords,
+  isMerged,
+  toggleSelected,
+  selected,
+}) => {
   const letters = content.split("");
   const {
     showToken: [showToken, toggleShowToken],
-  } = useContext(TokenContext);
-  const {
     word: [word, setWord],
-  } = useContext(TokenContext);
-  const {
     codaElement: [codaElement, setCodaElement],
+    canResetMorph: [canResetMorph, toggleCanResetMorph],
   } = useContext(TokenContext);
   const {
     morphHasBeenClicked: [morphHasBeenClicked, toggleMorphHasBeenClicked],
   } = useContext(HistoryContext);
+  const {
+    lemma: [lemma, setLemma],
+  } = useContext(DataContext);
 
   return (
     <>
@@ -28,27 +37,16 @@ const Word = ({ content, raw, index, joinWords, isMerged }) => {
             className="fas fa-arrow-left arrow"
           ></i>
         )}
-        {/* <input
-          value={content}
-          style={{
-            maxWidth: `${content.length + 1}ch`,
-          }}
-          className="words-input"
-          onClick={(e) => {
-            if (showToken) {
-              setWord([content]);
-              setCodaElement(content);
-              toggleMorphHasBeenClicked(!morphHasBeenClicked);
-            }
-          }}
-        /> */}
         <div
           className="words-input"
           onClick={(e) => {
             if (showToken) {
               setWord([content]);
               setCodaElement(content);
+              setLemma(content);
               toggleMorphHasBeenClicked(!morphHasBeenClicked);
+              toggleSelected(true);
+              toggleCanResetMorph(true);
             }
           }}
         >
@@ -56,7 +54,9 @@ const Word = ({ content, raw, index, joinWords, isMerged }) => {
         </div>
         {raw[0] !== content && !showToken && (
           <i
-            onClick={() => joinWords(index, index - 1)}
+            onClick={() => {
+              joinWords(index, index - 1);
+            }}
             className="fas fa-arrow-right arrow"
           ></i>
         )}

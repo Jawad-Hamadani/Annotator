@@ -14,28 +14,25 @@ import { DataContext } from "../../contexts/DataContext";
 const Sentences = ({}) => {
   const {
     showToken: [showToken, toggleShowToken],
-  } = useContext(TokenContext);
-  const {
     word: [word, setWord],
+    codaElement: [codaElement, setCodaElement],
   } = useContext(TokenContext);
+
   const {
     fixed: [fixed, setFixed],
+    original: [original, setOriginal],
+    taxonomy: [taxonomy, setTaxonomy],
   } = useContext(DataContext);
   const {
     edit: [edit, setEdit],
-  } = useContext(SentencesContext);
-  const {
     mergedIndexes: [mergedIndexes, setMergedIndexes],
   } = useContext(SentencesContext);
+
   const {
     mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
-  } = useContext(HistoryContext);
-  const {
     arrayIndex: [arrayIndex, setArrayIndex],
   } = useContext(HistoryContext);
-  const {
-    codaElement: [codaElement, setCodaElement],
-  } = useContext(TokenContext);
+
   const [sentences, setSentences] = useState([
     "سرعه وموبايل وانعدام المسؤوليه هيدي السواقه بلبنان والموت ببلاش",
     "قلن ما يعلوا الصوت وما يقربوا الكاميرا اللي رح تشوفوا الليله ما شفتوا متله من قبل",
@@ -59,6 +56,7 @@ const Sentences = ({}) => {
                 className="sentences"
                 onClick={() => {
                   setFixed(item);
+                  setOriginal(item);
                   setEdit(false);
                   setWord([""]);
                   toggleShowToken(false);
@@ -67,6 +65,7 @@ const Sentences = ({}) => {
                   setCodaElement("");
                   setMergedIndexes([]);
                   setMergedIndexesHistory([]);
+                  setTaxonomy([""]);
                 }}
               >
                 <ListItemText primary={item} />

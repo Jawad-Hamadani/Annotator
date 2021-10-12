@@ -13,12 +13,15 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
   const {
     mergedIndexes: [mergedIndexes, setMergedIndexes],
   } = useContext(SentencesContext);
+
   const {
     hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
   } = useContext(HistoryContext);
   const {
     mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
   } = useContext(HistoryContext);
+
+  const [selected, toggleSelected] = useState(false);
 
   useEffect(() => {
     setRaw(fixed.split(" ").filter((e) => e));
@@ -31,12 +34,6 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
   useEffect(() => {
     setMergedIndexesHistory(mergedIndexes);
   }, []);
-
-  // useEffect(() => {
-  //   let tempIndexes = mergedIndexesHistory;
-  //   tempIndexes.push(mergedIndexes);
-  //   setMergedIndexesHistory(tempIndexes);
-  // }, [mergedIndexes]);
 
   function joinWords(i, j) {
     let newArr = [...raw];
@@ -80,6 +77,8 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
           index={i}
           joinWords={joinWords}
           isMerged={mergedIndexes.includes(i)}
+          toggleSelected={toggleSelected}
+          selected={selected}
         />
       ))}
     </>

@@ -4,9 +4,9 @@ import {
   FormControl,
   InputLabel,
   FormHelperText,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { useState, useEffect, useContext } from "react";
 
 const SelectGroup = ({
   options,
@@ -20,6 +20,8 @@ const SelectGroup = ({
   styleT,
   formSize,
   setter,
+  value,
+  onChange,
 }) => {
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -30,11 +32,18 @@ const SelectGroup = ({
       marginTop: theme.spacing(2),
     },
   }));
-  const classes = useStyles();
-  const [currentValue, setCurrentValue] = useState(options[0]);
 
-  const handleChange = (event) => {
-    setCurrentValue(event.target.value);
+  const classes = useStyles();
+  const [currentValue, setCurrentValue] = useState(value ?? options[0]);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(currentValue);
+    }
+  }, [currentValue]);
+
+  const handleChange = (e) => {
+    setCurrentValue(e.target.value);
   };
   const mainForm = classes.formControl;
   return (
@@ -45,7 +54,7 @@ const SelectGroup = ({
           style={styleT}
           value={currentValue}
           onChange={handleChange}
-          labelId='select-demo'
+          labelId="select-demo"
           id={id}
           variant={variant}
           disabled={disabled}

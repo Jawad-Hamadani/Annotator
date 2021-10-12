@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Paper, Button } from "@material-ui/core";
 import Words from "../token/Words";
 import Token from "../token/Token";
@@ -16,8 +16,6 @@ const SegmentedDiv = () => {
   } = useContext(DataContext);
   const {
     history: [history, setHistory],
-  } = useContext(HistoryContext);
-  const {
     arrayIndex: [arrayIndex, setArrayIndex],
   } = useContext(HistoryContext);
 
@@ -29,6 +27,13 @@ const SegmentedDiv = () => {
       setHistory(history);
     }
   };
+
+  const resetSegmentation = () => {
+    setRaw(history[0]);
+    setArrayIndex(0);
+    setHistory([history[0]]);
+  };
+
   return (
     <>
       <div
@@ -47,8 +52,21 @@ const SegmentedDiv = () => {
                 !showToken && undo();
               }
             }}
-            className="fas fa-redo"
+            className="fas fa-undo"
           ></i>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => {
+              {
+                !showToken && resetSegmentation();
+              }
+            }}
+            disabled={showToken && true}
+          >
+            Reset Segmentation
+          </Button>
         </div>
         <Paper variant="outlined" elevation={3}>
           <div className="words-container">
