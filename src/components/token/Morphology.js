@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { TextField, makeStyles } from "@material-ui/core";
+import { TextField, makeStyles, Button } from "@material-ui/core";
 import { HistoryContext } from "../../contexts/HistoryContext";
 import SelectGroup from "../utilities/SelectGroup";
 import { DataContext } from "../../contexts/DataContext";
@@ -49,26 +49,42 @@ const Morphology = ({
   const classes = useStyles();
   return (
     <div style={{ width: "100%" }}>
-      <TextField
-        className="TextField-without-border-radius"
-        style={{ marginBottom: "0.5em" }}
-        inputProps={{
-          className: classes.input,
-        }}
-        dir="rtl"
-        size="small"
-        id="outlined-basic"
-        variant="outlined"
-        fullWidth
-        value={value}
-        placeholder="Press on a word to begin Morphology"
-        onClick={(e) => {
-          splitWords(value, e, index);
-        }}
-      />
+      <div className="flex-morphology">
+        <div style={{ width: "90%" }}>
+          <TextField
+            className="TextField-without-border-radius"
+            style={{ marginBottom: "0.5em" }}
+            inputProps={{
+              className: classes.input,
+            }}
+            dir="rtl"
+            size="small"
+            id="outlined-basic"
+            variant="outlined"
+            fullWidth
+            value={value}
+            placeholder="Press on a word to begin Morphology"
+            onClick={(e) => {
+              splitWords(value, e, index);
+            }}
+          />
+        </div>
+        <div
+          style={{
+            justifyContent: "center",
+            alignIitems: "center",
+            display: "flex",
+            paddingTop: "1em",
+            width: "10%",
+          }}
+        >
+          <i title="Flag" class="fas fa-lg fa-flag"></i>
+        </div>
+      </div>
       <div
         style={{
           display: "flex",
+          flexDirection: "row-reverse",
           gridGap: "0.3em",
         }}
       >

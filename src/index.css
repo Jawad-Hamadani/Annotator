@@ -209,3 +209,10 @@ p {
   align-items: center;
   color: var(--main-bg-color);
 }
+.fa-flag {
+  color: var(--main-bg-color);
+}
+.fa-flag:hover {
+  color: #374699;
+  cursor: pointer;
+}

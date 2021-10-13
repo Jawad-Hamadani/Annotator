@@ -1,12 +1,10 @@
-        Add flag button for each segment
         Give each Morpholoy segmnt its independence in UI and state
         Fix the Reset Morph functionalities(future)
         outline seleted words for morphology,
         color of merged words, 
-        manage the state of the SelectGroup
-
-
+ 
         Every word needs to have a unique identifier
+        as long as the input is empty in the morph, disable all the selects and fields
         token takes unique identifier as a prop
         token must have a state variable called key
         the tokens data must have a unique context storing its data and active word

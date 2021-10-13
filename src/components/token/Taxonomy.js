@@ -30,8 +30,8 @@ const Taxonomy = ({ tags }) => {
   useEffect(() => {}, []);
 
   const gridTaxonomy = {
-    display: "grid",
-    gridTemplateColumns: `repeat(${taxonomy.length}, 1fr)`,
+    display: "flex",
+    flexDirection: "row-reverse",
     gridGap: "0.3em",
   };
 
@@ -39,14 +39,16 @@ const Taxonomy = ({ tags }) => {
     <div className="grid-5">
       <div style={gridTaxonomy}>
         {taxonomy.map((item, i) => (
-          <SelectGroup
-            styleT={selectStyle}
-            formSize="small"
-            options={tags.taxonomy}
-            variant="outlined"
-            formWidth="100%"
-            onChange={(e) => changeTaxonomy(e, i)}
-          />
+          <div style={{ flex: "1" }}>
+            <SelectGroup
+              styleT={selectStyle}
+              formSize="small"
+              options={tags.taxonomy}
+              variant="outlined"
+              formWidth="100%"
+              onChange={(e) => changeTaxonomy(e, i)}
+            />
+          </div>
         ))}
       </div>
 
