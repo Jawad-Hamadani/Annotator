@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { DataContext } from "../../contexts/DataContext";
 import SelectGroup from "../utilities/SelectGroup";
 
-const Taxonomy = ({ tags }) => {
+const Taxonomy = ({ tags, morphologyHasValue, toggleMorphologyHasValue }) => {
   const selectStyle = {
     marginTop: "0.5em",
     borderRadius: "0",
@@ -41,6 +41,7 @@ const Taxonomy = ({ tags }) => {
         {taxonomy.map((item, i) => (
           <div style={{ flex: "1" }}>
             <SelectGroup
+              disabled={!morphologyHasValue && true}
               styleT={selectStyle}
               formSize="small"
               options={tags.taxonomy}
@@ -55,7 +56,9 @@ const Taxonomy = ({ tags }) => {
       <i
         class="fas fa-lg fa-plus"
         onClick={() => {
-          addTaxonomy();
+          if (morphologyHasValue) {
+            addTaxonomy();
+          }
         }}
       ></i>
     </div>

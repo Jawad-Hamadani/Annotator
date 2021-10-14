@@ -79,7 +79,12 @@ const SegmentedDiv = () => {
           </div>
         </Paper>
         <Button
-          onClick={fixed !== "" && (() => toggleShowToken(!showToken))}
+          onClick={
+            fixed !== "" &&
+            (() => {
+              toggleShowToken(!showToken);
+            })
+          }
           style={{ marginTop: "0.5em" }}
           color="primary"
           variant="contained"

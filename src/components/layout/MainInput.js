@@ -12,10 +12,6 @@ const MainInput = ({}) => {
     edit: [edit, setEdit],
   } = useContext(SentencesContext);
 
-  function editInput(e) {
-    setFixed(e.target.value);
-  }
-
   return (
     <>
       <div className="icon-flex">
@@ -35,7 +31,7 @@ const MainInput = ({}) => {
             id="outlined-basic"
             disabled={edit ? false : true}
             variant="outlined"
-            onChange={(e) => edit && editInput(e)}
+            onChange={(e) => edit && setFixed(e.target.value)}
             value={fixed}
             inputProps={{ style: { fontSize: "1.3em" } }}
           />

@@ -16,6 +16,27 @@ export const DataProvider = (props) => {
   const [nounForm, setNounForm] = useState("");
   const [verbForm, setVerbForm] = useState("");
 
+  // const [tokens, setTokens] = useState([
+  //   {
+  //     text: "سرعه",
+  //     pos: "NOUN",
+  //     aspect: "NA",
+  //     person: "NA",
+  //     gender: "F",
+  //     number: "S",
+  //     state: "I",
+  //     voice: "NA",
+  //     mood: "NA",
+  //     verbForm: "NA",
+  //     nounForm: "NONE",
+  //     lemma: "سرعة",
+  //     flag: "n_flag",
+  //     isMSA: "Lebanese",
+  //   },
+  // ]);
+
+  const [tokens, setTokens] = useState([]);
+
   const cleanUpData = () => {
     setFixed("");
     setRaw(fixed.split(" ").filter((e) => e));
@@ -46,6 +67,7 @@ export const DataProvider = (props) => {
         posValue: [posValue, setPosValue],
         nounForm: [nounForm, setNounForm],
         verbForm: [verbForm, setVerbForm],
+        tokens: [tokens, setTokens],
         cleanUp: cleanUpData,
       }}
     >

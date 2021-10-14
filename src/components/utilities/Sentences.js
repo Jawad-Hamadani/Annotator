@@ -15,13 +15,18 @@ const Sentences = ({}) => {
   const {
     showToken: [showToken, toggleShowToken],
     word: [word, setWord],
-    codaElement: [codaElement, setCodaElement],
+    chosenWordForMorphology: [
+      chosenWordForMorphology,
+      setChosenWordForMorphology,
+    ],
   } = useContext(TokenContext);
 
   const {
     fixed: [fixed, setFixed],
     original: [original, setOriginal],
     taxonomy: [taxonomy, setTaxonomy],
+    coda: [coda, setCoda],
+    cleanUp: cleanUpData,
   } = useContext(DataContext);
   const {
     edit: [edit, setEdit],
@@ -31,6 +36,7 @@ const Sentences = ({}) => {
   const {
     mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
     arrayIndex: [arrayIndex, setArrayIndex],
+    hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
   } = useContext(HistoryContext);
 
   const [sentences, setSentences] = useState([
@@ -42,9 +48,7 @@ const Sentences = ({}) => {
     "خليك دايما مش بالمسؤوليه تجاه كل شي عم يصير يمكن يلحقك الدور",
     "لازم تعرف يا عميل انت مين وحركه امل مين",
   ]);
-  const {
-    hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
-  } = useContext(HistoryContext);
+
   return (
     <div>
       <Paper style={{ maxHeight: 300, overflow: "auto" }}>
@@ -55,6 +59,7 @@ const Sentences = ({}) => {
               <ListItem
                 className="sentences"
                 onClick={() => {
+                  cleanUpData("");
                   setFixed(item);
                   setOriginal(item);
                   setEdit(false);
@@ -62,10 +67,9 @@ const Sentences = ({}) => {
                   toggleShowToken(false);
                   setArrayIndex(0);
                   toggleHasBeenClicked(!hasBeenClicked);
-                  setCodaElement("");
                   setMergedIndexes([]);
                   setMergedIndexesHistory([]);
-                  setTaxonomy([""]);
+                  setChosenWordForMorphology(null);
                 }}
               >
                 <ListItemText primary={item} />

@@ -4,10 +4,11 @@ import { TextField } from "@material-ui/core";
 import { TokenContext } from "../../contexts/TokenContext";
 import { DataContext } from "../../contexts/DataContext";
 
-const CodaLemmaGloss = ({ tags }) => {
-  const {
-    codaElement: [codaElement, setCodaElement],
-  } = useContext(TokenContext);
+const CodaLemmaGloss = ({
+  tags,
+  morphologyHasValue,
+  toggleMorphologyHasValue,
+}) => {
   const {
     lemma: [lemma, setLemma],
     dialect: [dialect, setDialect],
@@ -20,20 +21,22 @@ const CodaLemmaGloss = ({ tags }) => {
     <div className="grid-4">
       <div>
         <TextField
+          disabled={!morphologyHasValue && true}
           className="TextField-without-border-radius"
           dir="rtl"
           size="small"
           id="outlined-basic"
           variant="outlined"
-          value={codaElement}
+          value={coda}
           onChange={(e) => {
-            setCodaElement(e.target.value);
+            setCoda(e.target.value);
           }}
           placeholder="Coda"
         />
       </div>
       <div>
         <TextField
+          disabled={!morphologyHasValue && true}
           className="TextField-without-border-radius"
           dir="rtl"
           size="small"
@@ -46,6 +49,7 @@ const CodaLemmaGloss = ({ tags }) => {
       </div>
       <div>
         <TextField
+          disabled={!morphologyHasValue && true}
           className="TextField-without-border-radius"
           size="small"
           id="outlined-basic"
@@ -57,6 +61,7 @@ const CodaLemmaGloss = ({ tags }) => {
         />
       </div>
       <SelectGroup
+        disabled={!morphologyHasValue && true}
         styleT={{ borderRadius: "0" }}
         formSize="small"
         variant="outlined"

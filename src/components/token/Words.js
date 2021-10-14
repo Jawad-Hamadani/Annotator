@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../contexts/DataContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
 import { SentencesContext } from "../../contexts/SentencesContext";
+import { TokenContext } from "../../contexts/TokenContext";
 import Word from "./Word";
 
 const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
@@ -21,7 +22,12 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
     mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
   } = useContext(HistoryContext);
 
-  const [selected, toggleSelected] = useState(false);
+  const {
+    chosenWordForMorphology: [
+      chosenWordForMorphology,
+      setChosenWordForMorphology,
+    ],
+  } = useContext(TokenContext);
 
   useEffect(() => {
     setRaw(fixed.split(" ").filter((e) => e));
@@ -32,8 +38,9 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
   }, [hasBeenClicked]);
 
   useEffect(() => {
-    setMergedIndexesHistory(mergedIndexes);
-  }, []);
+    const temp = [...mergedIndexesHistory, mergedIndexes];
+    setMergedIndexesHistory(temp);
+  }, [mergedIndexes]);
 
   function joinWords(i, j) {
     let newArr = [...raw];
@@ -59,9 +66,8 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
       setMergedIndexes([...mergedIndexes, i]);
     }
 
-    let temp = history;
     setRaw(newArr);
-    temp.push(newArr);
+    let temp = [...history, newArr];
     setHistory(temp);
     setArrayIndex(arrayIndex + 1);
     setChange(!change);
@@ -77,8 +83,8 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
           index={i}
           joinWords={joinWords}
           isMerged={mergedIndexes.includes(i)}
-          toggleSelected={toggleSelected}
-          selected={selected}
+          chosenWordForMorphology={chosenWordForMorphology === i}
+          setChosenWordForMorphology={setChosenWordForMorphology}
         />
       ))}
     </>

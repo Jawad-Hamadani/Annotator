@@ -11,13 +11,17 @@ const ButtonGroup = () => {
     lemma: [lemma, setLemma],
     gloss: [gloss, setGloss],
     taxonomy: [taxonomy, setTaxonomy],
+    coda: [coda, setCoda],
     cleanUp: cleanUpData,
   } = useContext(DataContext);
   const {
     showToken: [showToken, toggleShowToken],
     word: [word, setWord],
-    codaElement: [codaElement, setCodaElement],
     canResetMorph: [canResetMorph, toggleCanResetMorph],
+    chosenWordForMorphology: [
+      chosenWordForMorphology,
+      setChosenWordForMorphology,
+    ],
   } = useContext(TokenContext);
   const {
     morphHistory: [morphHistory, setMorphHistory],
@@ -34,9 +38,10 @@ const ButtonGroup = () => {
           toggleShowToken(false);
           setMorphHistory([]);
           setWord("");
-          setCodaElement("");
+          setCoda("");
           toggleCanResetMorph(false);
           cleanUpData();
+          setChosenWordForMorphology(null);
         }}
       >
         Reset All

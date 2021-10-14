@@ -5,6 +5,7 @@ import CodaLemmaGloss from "./CodaLemmaGloss";
 import { makeStyles } from "@material-ui/core/styles";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
+import { DataContext } from "../../contexts/DataContext";
 import ButtonGroup from "../utilities/ButtonGroup";
 import Taxonomy from "./Taxonomy";
 import Tags from "./tags.json";
@@ -16,9 +17,17 @@ const useStyles = makeStyles({
 });
 
 const Token = () => {
+  const [morphologyHasValue, toggleMorphologyHasValue] = useState(false);
   const {
     word: [word, setWord],
   } = useContext(TokenContext);
+  const {
+    pos: [pos, setPos],
+    posValue: [posValue, setPosValue],
+    nounForm: [nounForm, setNounForm],
+    verbForm: [verbForm, setVerbForm],
+    tokens: [tokens, setTokens],
+  } = useContext(DataContext);
   const {
     morphHistory: [morphHistory, setMorphHistory],
   } = useContext(HistoryContext);
@@ -55,7 +64,6 @@ const Token = () => {
     temp.push(newArr);
     setMorphHistory(temp);
     toggleMoprhFlag(!morphFlag);
-    console.log(morphHistory);
     setMorphArrayIndex(morphArrayIndex + 1);
   }
 
@@ -84,21 +92,30 @@ const Token = () => {
           ></i>
           {word.map((item, i) => (
             <Morphology
+              morphologyHasValue={morphologyHasValue}
+              toggleMorphologyHasValue={toggleMorphologyHasValue}
               tags={Tags}
               value={item}
               key={i}
               word={word}
-              index={i}
+              morphologyIndex={i}
               splitWords={splitWords}
-              morphHistory={morphHistory}
-              setMorphArrayIndex={setMorphArrayIndex}
-              morphArrayIndex={morphArrayIndex}
               setMorphHistory={setMorphHistory}
+              tokens={tokens}
+              setTokens={setTokens}
             />
           ))}
         </div>
-        <CodaLemmaGloss tags={Tags} />
-        <Taxonomy tags={Tags} />
+        <CodaLemmaGloss
+          morphologyHasValue={morphologyHasValue}
+          toggleMorphologyHasValue={toggleMorphologyHasValue}
+          tags={Tags}
+        />
+        <Taxonomy
+          morphologyHasValue={morphologyHasValue}
+          toggleMorphologyHasValue={toggleMorphologyHasValue}
+          tags={Tags}
+        />
       </Paper>
       <ButtonGroup />
     </div>

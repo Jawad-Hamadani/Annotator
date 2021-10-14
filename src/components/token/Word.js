@@ -9,14 +9,13 @@ const Word = ({
   index,
   joinWords,
   isMerged,
-  toggleSelected,
-  selected,
+  chosenWordForMorphology,
+  setChosenWordForMorphology,
 }) => {
   const letters = content.split("");
   const {
     showToken: [showToken, toggleShowToken],
     word: [word, setWord],
-    codaElement: [codaElement, setCodaElement],
     canResetMorph: [canResetMorph, toggleCanResetMorph],
   } = useContext(TokenContext);
   const {
@@ -24,11 +23,22 @@ const Word = ({
   } = useContext(HistoryContext);
   const {
     lemma: [lemma, setLemma],
+    coda: [coda, setCoda],
   } = useContext(DataContext);
 
   return (
     <>
-      <div className={isMerged ? "words-input-active" : "morphology-div"}>
+      <div
+        className={
+          isMerged && chosenWordForMorphology
+            ? "selected-merged-word-for-morphology"
+            : chosenWordForMorphology
+            ? "selected-word-for-morphology"
+            : isMerged
+            ? "words-input-active"
+            : "morphology-div"
+        }
+      >
         {raw[raw.length - 1] !== content && !showToken && (
           <i
             onClick={() => {
@@ -42,11 +52,11 @@ const Word = ({
           onClick={(e) => {
             if (showToken) {
               setWord([content]);
-              setCodaElement(content);
+              setCoda(content);
               setLemma(content);
               toggleMorphHasBeenClicked(!morphHasBeenClicked);
-              toggleSelected(true);
               toggleCanResetMorph(true);
+              setChosenWordForMorphology(index);
             }
           }}
         >

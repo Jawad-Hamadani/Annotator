@@ -153,6 +153,24 @@ p {
   margin: 0;
   font-size: 1.3em;
 }
+.selected-word-for-morphology {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.3em;
+  background-color: rgba(11, 156, 49, 0.2);
+  border: solid 2px var(--main-bg-color);
+  padding: 0.2em;
+  border-radius: 0.2em;
+}
+.selected-merged-word-for-morphology {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.3em;
+  background-color: #99ff99;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  border: solid 2px var(--main-bg-color);
+}
 .words-container {
   display: flex;
   min-height: 4.6em;

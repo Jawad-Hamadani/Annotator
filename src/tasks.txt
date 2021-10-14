@@ -1,6 +1,6 @@
-        Give each Morpholoy segmnt its independence in UI and state
+
+        Give each Morpholoy segment its independence in state
         Fix the Reset Morph functionalities(future)
-        outline seleted words for morphology,
         color of merged words, 
  
         Every word needs to have a unique identifier
