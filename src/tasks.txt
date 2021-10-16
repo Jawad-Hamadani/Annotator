@@ -1,7 +1,5 @@
 
-        Give each Morpholoy segment its independence in state
         Fix the Reset Morph functionalities(future)
-        color of merged words, 
  
         Every word needs to have a unique identifier
         as long as the input is empty in the morph, disable all the selects and fields

@@ -9,7 +9,6 @@ export const HistoryProvider = (props) => {
   const [morphHistory, setMorphHistory] = useState([]);
   const [morphArrayIndex, setMorphArrayIndex] = useState(0);
   const [morphHasBeenClicked, toggleMorphHasBeenClicked] = useState(false);
-  const [mergedIndexesHistory, setMergedIndexesHistory] = useState(null);
 
   return (
     <HistoryContext.Provider
@@ -20,7 +19,6 @@ export const HistoryProvider = (props) => {
         morphHistory: [morphHistory, setMorphHistory],
         morphArrayIndex: [morphArrayIndex, setMorphArrayIndex],
         morphHasBeenClicked: [morphHasBeenClicked, toggleMorphHasBeenClicked],
-        mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
       }}
     >
       {props.children}

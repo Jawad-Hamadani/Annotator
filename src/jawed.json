@@ -1,0 +1,227 @@
+{
+    "original": "سرعه وموبايل وانعدام المسؤوليه هيدي السواقه بلبنان والموت ببلاش",
+    "fixed": "",
+    "raw": [
+        "سرعه",
+        "وموبايل",
+        "وانعدام",
+        "المسؤوليه",
+        "هيدي",
+        "السواقه",
+        "بلبنان",
+        "والموت",
+        "ببلاش"
+    ],
+    "coda": [
+        "سرعة",
+        "وموبايل",
+        "وانعدام",
+        "المسؤولية",
+        "هيدي",
+        "السواقة",
+        "بلبنان",
+        "والموت",
+        "ببلاش"
+    ],
+    "taxonomy": [
+        ["NONE", "t2"],
+        ["NONE"],
+        ["NONE"],
+        ["NONE", "t5", "t9"],
+        ["NONE"],
+        ["NONE"],
+        ["NONE"],
+        ["NONE"],
+        ["NONE"]
+    ],
+    "tokens": [
+        [
+            {
+                "text": "سرعه",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "و",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "موبايل",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "و",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "انعدام",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "ال",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "مسؤوليه",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "هيدي",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "ال",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "سواقه",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "ب",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "لبنان",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "و",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "ال",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "موت",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ],
+        [
+            {
+                "text": "ب",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            },
+            {
+                "text": "بلاش",
+                "pos": "NOUN",
+                "features": "1MS",
+                "form": "NA",
+                "lemma": "سرعة",
+                "gloss": "speed",
+                "flag": "n_flag",
+                "dialect": "LEB"
+            }
+        ]
+    ]
+}

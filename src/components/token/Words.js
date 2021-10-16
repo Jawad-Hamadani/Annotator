@@ -18,9 +18,6 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
   const {
     hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
   } = useContext(HistoryContext);
-  const {
-    mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
-  } = useContext(HistoryContext);
 
   const {
     chosenWordForMorphology: [
@@ -37,12 +34,7 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
     setHistory([fixed.split(" ").filter((e) => e)]);
   }, [hasBeenClicked]);
 
-  useEffect(() => {
-    const temp = [...mergedIndexesHistory, mergedIndexes];
-    setMergedIndexesHistory(temp);
-  }, [mergedIndexes]);
-
-  function joinWords(i, j) {
+  const joinWords = (i, j) => {
     let newArr = [...raw];
     let firstWord = newArr[i];
     let secondWord = newArr[j];
@@ -71,7 +63,21 @@ const Words = ({ history, setHistory, arrayIndex, setArrayIndex }) => {
     setHistory(temp);
     setArrayIndex(arrayIndex + 1);
     setChange(!change);
-  }
+  };
+
+  const undoMergedIndexes = () => {
+    if (mergedIndexes !== []) {
+      const toBePopped = mergedIndexes[mergedIndexes.length - 1];
+      for (let n = 0; n < mergedIndexes.length; n++) {
+        if (toBePopped <= mergedIndexes[n]) {
+          mergedIndexes[n] = mergedIndexes[n] + 1;
+        }
+      }
+      const temp = [...mergedIndexes];
+      temp.pop();
+      setMergedIndexes(temp);
+    }
+  };
 
   return (
     <>

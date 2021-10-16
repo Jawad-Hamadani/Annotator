@@ -5,6 +5,7 @@ import Token from "../token/Token";
 import { TokenContext } from "../../contexts/TokenContext";
 import { HistoryContext } from "../../contexts/HistoryContext";
 import { DataContext } from "../../contexts/DataContext";
+import { SentencesContext } from "../../contexts/SentencesContext";
 
 const SegmentedDiv = () => {
   const {
@@ -18,6 +19,9 @@ const SegmentedDiv = () => {
     history: [history, setHistory],
     arrayIndex: [arrayIndex, setArrayIndex],
   } = useContext(HistoryContext);
+  const {
+    mergedIndexes: [mergedIndexes, setMergedIndexes],
+  } = useContext(SentencesContext);
 
   const undo = () => {
     if (arrayIndex !== 0) {
@@ -32,6 +36,20 @@ const SegmentedDiv = () => {
     setRaw(history[0]);
     setArrayIndex(0);
     setHistory([history[0]]);
+  };
+
+  const undoMergedIndexes = () => {
+    if (mergedIndexes !== []) {
+      const toBePopped = mergedIndexes[mergedIndexes.length - 1];
+      for (let n = 0; n < mergedIndexes.length; n++) {
+        if (toBePopped <= mergedIndexes[n]) {
+          mergedIndexes[n] = mergedIndexes[n] + 1;
+        }
+      }
+      const temp = [...mergedIndexes];
+      temp.pop();
+      setMergedIndexes(temp);
+    }
   };
 
   return (
@@ -49,7 +67,10 @@ const SegmentedDiv = () => {
             title="Undo"
             onClick={() => {
               {
-                !showToken && undo();
+                if (!showToken) {
+                  undo();
+                  undoMergedIndexes();
+                }
               }
             }}
             className="fas fa-undo"
@@ -60,7 +81,10 @@ const SegmentedDiv = () => {
             size="small"
             onClick={() => {
               {
-                !showToken && resetSegmentation();
+                if (!showToken) {
+                  resetSegmentation();
+                  setMergedIndexes([]);
+                }
               }
             }}
             disabled={showToken && true}

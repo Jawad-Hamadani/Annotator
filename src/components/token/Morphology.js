@@ -49,11 +49,44 @@ const Morphology = ({
     morphHasBeenClicked: [morphHasBeenClicked, toggleMorphHasBeenClicked],
   } = useContext(HistoryContext);
 
+  const {
+    tokens: [tokens, setTokens],
+  } = useContext(DataContext);
+
   useEffect(() => {
     setMorphHistory([word]);
   }, [morphHasBeenClicked]);
 
+  const wordClone = [...word];
+
+  useEffect(() => {
+    const temp = [...tokens];
+    temp[morphologyIndex] = {
+      text: "",
+      features: "",
+      lemma: "",
+      pos: "",
+      form: "",
+      gloss: "",
+      dialect: "",
+    };
+    setTokens(temp);
+  }, []);
+
+  useEffect(() => {
+    console.log(tokens);
+  }, [tokens]);
+
   const classes = useStyles();
+
+  const modifyObjectKey = (e, value) => {
+    if (tokens[morphologyIndex]) {
+      const temp = { ...tokens };
+      temp[morphologyIndex][value] = e;
+      setTokens(temp);
+    }
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <div className="flex-morphology">
@@ -105,6 +138,7 @@ const Morphology = ({
             formWidth="100%"
             onChange={(e) => {
               setPosLocal(e);
+              modifyObjectKey(e, "pos");
             }}
           />
         </div>
@@ -118,7 +152,10 @@ const Morphology = ({
               options={hasVal}
               variant="outlined"
               formWidth="100%"
-              onChange={(e) => setPosLocalValue(e)}
+              onChange={(e) => {
+                // modifyObjectKey(e, "features");
+                setPosLocalValue(e);
+              }}
             />
           </div>
         )}
@@ -139,9 +176,11 @@ const Morphology = ({
         onChange={(e) => {
           if (hasNounForm) {
             setLocalNounForm(e);
+            modifyObjectKey(e, "form");
           }
           if (hasVerbForm) {
             setLocalVerbForm(e);
+            modifyObjectKey(e, "form");
           }
         }}
       />

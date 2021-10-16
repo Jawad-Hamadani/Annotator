@@ -34,7 +34,6 @@ const Sentences = ({}) => {
   } = useContext(SentencesContext);
 
   const {
-    mergedIndexesHistory: [mergedIndexesHistory, setMergedIndexesHistory],
     arrayIndex: [arrayIndex, setArrayIndex],
     hasBeenClicked: [hasBeenClicked, toggleHasBeenClicked],
   } = useContext(HistoryContext);
@@ -68,7 +67,7 @@ const Sentences = ({}) => {
                   setArrayIndex(0);
                   toggleHasBeenClicked(!hasBeenClicked);
                   setMergedIndexes([]);
-                  setMergedIndexesHistory([]);
+
                   setChosenWordForMorphology(null);
                 }}
               >

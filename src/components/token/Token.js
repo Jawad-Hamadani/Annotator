@@ -42,7 +42,7 @@ const Token = () => {
 
   const classes = useStyles();
 
-  function splitWords(item, e, wordIndex) {
+  const splitWords = (item, e, wordIndex) => {
     const index = ("Caret at: ", e.target.selectionStart);
     if (index == 0 || index == item.length) {
       return;
@@ -65,7 +65,7 @@ const Token = () => {
     setMorphHistory(temp);
     toggleMoprhFlag(!morphFlag);
     setMorphArrayIndex(morphArrayIndex + 1);
-  }
+  };
 
   const morphUndo = () => {
     if (morphArrayIndex !== 0) {

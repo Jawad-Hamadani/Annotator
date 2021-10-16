@@ -17,23 +17,18 @@ export const DataProvider = (props) => {
   const [verbForm, setVerbForm] = useState("");
 
   // const [tokens, setTokens] = useState([
-  //   {
-  //     text: "سرعه",
-  //     pos: "NOUN",
-  //     aspect: "NA",
-  //     person: "NA",
-  //     gender: "F",
-  //     number: "S",
-  //     state: "I",
-  //     voice: "NA",
-  //     mood: "NA",
-  //     verbForm: "NA",
-  //     nounForm: "NONE",
-  //     lemma: "سرعة",
-  //     flag: "n_flag",
-  //     isMSA: "Lebanese",
-  //   },
-  // ]);
+  //   [
+  //     {
+  //         "text": "سرعه",
+  //         "pos": "NOUN",
+  //         "features": "1MS",
+  //         "form": "NA",
+  //         "lemma": "سرعة",
+  //         "gloss": "speed",
+  //         "flag": "n_flag",
+  //         "dialect": "LEB"
+  //     }
+  // ],
 
   const [tokens, setTokens] = useState([]);
 
