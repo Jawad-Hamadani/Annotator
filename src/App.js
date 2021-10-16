@@ -17,12 +17,6 @@ function App() {
             <div className="App">
               <Navbar />
               <div className="container">
-                {/* <div className="sidebars">
-                <h1>Search Field</h1>
-                <p>Examples from other treebanks to help you tag.</p>
-                <SearchBar button="Search" label="Examples" />
-                <SelectGroupCollection1 />
-              </div> */}
                 <div className="main-work-space">
                   <Segmentation />
                 </div>
